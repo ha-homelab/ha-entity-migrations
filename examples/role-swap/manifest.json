@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "snapshot_sha256": "21e0782e7cab2dc3a836803c283e0b03bde939975ee581b6af3cf57c3116c2b0",
+  "sources": {
+    "automations.json": "ba132cc169371ba97499c246289cdf62e7a57e943ccd9ea5ce4d55ca196edc76"
+  },
+  "assignments": [
+    {
+      "entity_id": "switch.pump_enable",
+      "hardware_id": "plug-a",
+      "channel": "1",
+      "role": "pump_enable",
+      "capabilities": [
+        "on_off"
+      ]
+    },
+    {
+      "entity_id": "light.workbench",
+      "hardware_id": "plug-b",
+      "channel": "1",
+      "role": "workbench",
+      "capabilities": [
+        "on_off"
+      ]
+    }
+  ],
+  "consumers": [
+    {
+      "file": "automations.json",
+      "pointer": "/0/actions/0/target/entity_id",
+      "policy": "follows_role",
+      "kind": "action",
+      "allowed_roles": [
+        "workbench"
+      ],
+      "required_capabilities": [
+        "on_off"
+      ],
+      "service_pointer": "/0/actions/0/action"
+    },
+    {
+      "file": "automations.json",
+      "pointer": "/1/actions/0/target/entity_id",
+      "policy": "retire",
+      "retire_scope": "/1"
+    }
+  ]
+}

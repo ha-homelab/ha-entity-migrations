@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-labelledby="title desc">
+<title id="title">Explicit consumer policies and guardrails</title><desc id="desc">A literal source reference follows role, follows hardware, or retires its declared object. Capability and role guards apply; ambiguity blocks the plan.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#334155"/></marker></defs>
+<rect width="960" height="470" fill="#f8fafc"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#0f172a}.title{font-size:25px;font-weight:bold}.label{font-size:18px;font-weight:bold}.small{font-size:15px}.caption{font-size:16px;fill:#475569}</style>
+<text x="32" y="44" class="title">Explicit consumer policies and guardrails</text>
+<rect x="32" y="92" width="230" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="48" y="121" class="label">Literal source reference</text><text x="48" y="146" class="small">Exact JSON pointer</text>
+<rect x="344" y="92" width="258" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="360" y="121" class="label">follows_role</text><text x="360" y="146" class="small">Locate destination by role</text>
+<rect x="344" y="203" width="258" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="360" y="232" class="label">follows_hardware</text><text x="360" y="257" class="small">Locate the physical channel</text>
+<rect x="344" y="314" width="258" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="360" y="343" class="label">retire</text><text x="360" y="368" class="small">Review whole object removal</text>
+<path d="M262,130 L331,130" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M296,130 L296,241 L331,241" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M296,241 L296,352 L331,352" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="682" y="142" width="246" height="76" rx="6" fill="#ccfbf1" stroke="#64748b"/><text x="698" y="171" class="label">Check declared guards</text><text x="698" y="196" class="small">Role · capabilities · domain</text>
+<rect x="682" y="285" width="246" height="76" rx="6" fill="#ffedd5" stroke="#64748b"/><text x="698" y="314" class="label">Needs manual review?</text><text x="698" y="339" class="small">BLOCKED · manual review</text>
+<path d="M602,130 L670,165" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M602,241 L670,195" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M805,218 L805,273" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="437" class="caption">Synthetic process illustration. A passing declaration is not proof that hardware is safe or correctly identified.</text>
+</svg>
