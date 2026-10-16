@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Reject duplicate source paths and physical-file aliases before planning, including hard links.
+- Preserve distinct files with identical content and report actionable source-alias errors in all four languages.
+
 ## 0.1.0
 
 - Add offline role-aware planning from explicit JSON manifests and normalized snapshots.

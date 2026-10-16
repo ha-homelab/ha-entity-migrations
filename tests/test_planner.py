@@ -186,6 +186,66 @@ class PlannerTests(unittest.TestCase):
 
 
 class InputTests(unittest.TestCase):
+    def alias_fixture(self, root, second_name, *, hardlink=False, separate=False):
+        manifest, snapshot, sources, _ = fixture()
+        raw = sources["automations.json"][0]
+        (root / "sub").mkdir()
+        original = root / "sub/config.json"
+        original.write_bytes(raw)
+        if hardlink:
+            os.link(original, root / second_name)
+        elif separate:
+            (root / second_name).write_bytes(raw)
+        first_name = "sub/config.json"
+        manifest["sources"] = {
+            first_name: hashlib.sha256(raw).hexdigest(),
+            second_name: hashlib.sha256(raw).hexdigest(),
+        }
+        consumer = manifest["consumers"][0]
+        manifest["consumers"] = [dict(consumer, file=first_name), dict(consumer, file=second_name)]
+        snapshot_raw = json.dumps(snapshot).encode()
+        manifest["snapshot_sha256"] = hashlib.sha256(snapshot_raw).hexdigest()
+        (root / "snapshot.json").write_bytes(snapshot_raw)
+        (root / "manifest.json").write_text(json.dumps(manifest))
+
+    def test_repeated_separator_source_alias_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.alias_fixture(root, "sub//config.json")
+            with self.assertRaises(InputError) as caught:
+                load_plan(root / "manifest.json", root / "snapshot.json", root)
+            self.assertEqual(caught.exception.code, "duplicate_source")
+
+    @unittest.skipUnless(hasattr(os, "link"), "hard links unavailable")
+    def test_hardlink_source_alias_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.alias_fixture(root, "sub/alias.json", hardlink=True)
+            with self.assertRaises(InputError) as caught:
+                load_plan(root / "manifest.json", root / "snapshot.json", root)
+            self.assertEqual(caught.exception.code, "duplicate_source")
+
+    def test_case_alias_is_rejected_on_case_insensitive_filesystem(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.alias_fixture(root, "sub/CONFIG.json")
+            if not (root / "sub/CONFIG.json").exists():
+                self.skipTest("filesystem is case-sensitive")
+            with self.assertRaises(InputError) as caught:
+                load_plan(root / "manifest.json", root / "snapshot.json", root)
+            self.assertEqual(caught.exception.code, "duplicate_source")
+
+    def test_equal_content_in_independent_files_is_not_an_alias(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.alias_fixture(root, "sub/copy.json", separate=True)
+            report = load_plan(root / "manifest.json", root / "snapshot.json", root)
+            self.assertEqual(report["status"], "ready")
+            self.assertEqual(len(report["edits"]), 4)
+            self.assertEqual(
+                {edit["file"] for edit in report["edits"]}, {"sub/config.json", "sub/copy.json"}
+            )
+
     def test_duplicate_nonfinite_and_excessive_depth(self):
         for raw in [
             b'{"a":1,"a":2}',

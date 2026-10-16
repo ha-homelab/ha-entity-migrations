@@ -66,3 +66,11 @@ assignments or consumers; JSON depth 40 and 100,000 value nodes per file.
 Identifiers are nonempty strings up to 256 characters, capabilities/allowed-role
 lists up to 64 unique strings. Relative source paths cannot traverse upward,
 be absolute, or contain symlinks. Inputs are regular files only.
+
+The file loader rejects two source names that resolve to the same canonical path
+or open-file identity (device/inode). This includes repeated path separators,
+hard links and case aliases on case-insensitive filesystems. Keep one source name
+and update its consumers; aliases cannot carry different migration policies for
+one physical file. Independent files with identical content remain valid inputs.
+The pure `plan` API has no filesystem access: callers constructing its source
+mapping themselves must enforce this identity boundary before calling it.

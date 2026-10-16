@@ -23,6 +23,15 @@ class InputError(ValueError):
 
 def read_regular(path: Path) -> bytes:
     """Reject symlinks/non-regular files before reading, and bound the actual read."""
+    return read_regular_identified(path)[0]
+
+
+def read_regular_identified(path: Path) -> tuple[bytes, tuple[int, int]]:
+    """Read bytes and file identity from the same open descriptor.
+
+    Device/inode identifies aliases only within this load. It is never persisted
+    in a manifest or report and is not a replacement for a content fingerprint.
+    """
     try:
         if path.is_symlink():
             raise InputError("unsafe_file", str(path))
@@ -36,7 +45,7 @@ def read_regular(path: Path) -> bytes:
             content = stream.read(MAX_BYTES + 1)
             if len(content) > MAX_BYTES:
                 raise InputError("size_limit", str(path))
-            return content
+            return content, (info.st_dev, info.st_ino)
     except OSError as exc:
         raise InputError("read_failed", str(path)) from exc
 
