@@ -4,4 +4,4 @@
 Потребитель явно следует роли, следует железу или удаляется целым заданным
 объектом. Отпечатки SHA-256 защищают от планирования по изменившимся исходникам.
 
-[Формат](../docs/ru/model.md) · [Примеры](../docs/ru/examples.md) · [Архитектура](../docs/ru/architecture.md) · [Главная](Home-ru.md)
+[Формат](https://github.com/ha-homelab/ha-entity-migrations/blob/main/docs/ru/model.md) · [Примеры](https://github.com/ha-homelab/ha-entity-migrations/blob/main/docs/ru/examples.md) · [Архитектура](https://github.com/ha-homelab/ha-entity-migrations/blob/main/docs/ru/architecture.md) · [Главная](https://github.com/ha-homelab/ha-entity-migrations/wiki/Home-ru)

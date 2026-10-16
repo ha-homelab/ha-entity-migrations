@@ -4,4 +4,4 @@
 заблокированный план. Не игнорируйте blocked и не разрешайте насосу световые роли
 ради успешного отчёта. Для сообщения об ошибке нужен вымышленный пример.
 
-[Полная диагностика](../docs/ru/troubleshooting.md) · [Ограничения](../docs/ru/limitations.md) · [Главная](Home-ru.md)
+[Полная диагностика](https://github.com/ha-homelab/ha-entity-migrations/blob/main/docs/ru/troubleshooting.md) · [Ограничения](https://github.com/ha-homelab/ha-entity-migrations/blob/main/docs/ru/limitations.md) · [Главная](https://github.com/ha-homelab/ha-entity-migrations/wiki/Home-ru)
