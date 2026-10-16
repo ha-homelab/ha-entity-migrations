@@ -23,3 +23,25 @@ push directly to main. Any GitHub Actions reference must be pinned to a full
 commit SHA; shared organization CI is maintained by the repository owner.
 The maintainer publishes releases; changing `version` and `pyproject.toml`
 together does not itself publish a package. Contributions use the MIT license.
+
+
+## Feedback and review
+
+Use [GitHub Issues](https://github.com/ha-homelab/ha-entity-migrations/issues) for bug reports,
+questions and enhancement proposals; existing issues and pull requests retain
+searchable discussion. Include the source revision, expected/actual behavior and
+a minimal synthetic reproducer. English reports are welcome. Security reports
+follow [SECURITY.md](SECURITY.md), and all participation follows our
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
+Contributions are under the repository's MIT license. Submit only material you
+have the right to contribute. Follow Python PEP 8 and the repository's Ruff
+configuration. Every new major feature and behavior fix requires automated tests,
+including a negative or regression case; update the interface documentation and
+changelog in the same pull request. Run tests without Python optimization so
+assertions remain enabled. The maintainer reviews the diff, test evidence and
+open comments before a normal merge. Automated reviews assist this process.
+
+See [RELEASING.md](RELEASING.md) for build and source-version instructions,
+[GOVERNANCE.md](GOVERNANCE.md) for responsibilities, and
+[ROADMAP.md](ROADMAP.md) for planned work.
