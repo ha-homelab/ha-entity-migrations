@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "entities": [
+    {
+      "entity_id": "light.table",
+      "hardware_id": "plug-c",
+      "channel": "1",
+      "role": "table",
+      "capabilities": [
+        "on_off"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "snapshot_sha256": "ffdac6d11f5cf79be3f666b58a3ddd5d9a869f22dce0bdb35755f663844d218b",
+  "sources": {
+    "automations.json": "3a3314b52157e2997db53ae2a543542f426b71809e360c5cd1595082c87a747a"
+  },
+  "assignments": [
+    {
+      "entity_id": "switch.table",
+      "hardware_id": "plug-c",
+      "channel": "1",
+      "role": "table",
+      "capabilities": [
+        "on_off"
+      ]
+    }
+  ],
+  "consumers": []
+}

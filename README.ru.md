@@ -1,0 +1,38 @@
+# Home Assistant Entity Migrations
+
+**Переносите роль на новое устройство, не направляя старую автоматику на чужую нагрузку.** Локальный Python CLI строит проверяемый план по явному снимку и политикам ссылок. Он не подключается к HA и ничего не применяет.
+
+[English](README.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Полное руководство](docs/ru/installation.md) · [Wiki](wiki/Home-ru.md)
+
+![Синтетический пример переноса роли](docs/diagrams/role-transfer.svg)
+
+Бывшая розетка лампы теперь питает насос; лампа переехала на другую розетку. Политика `follows_role` сохраняет связь автоматики с лампой. `follows_hardware` следует физическому каналу, но проверяет допустимую роль, поэтому сценарий света не сможет молча выключать насос. `retire` предлагает удалить явно указанный контейнер потребителя.
+
+## Установка и запуск
+
+Нужен Python 3.11+, зависимостей во время работы нет. Из каталога исходников:
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install -e .
+ha-entity-migrations --lang ru plan --manifest examples/role-swap/manifest.json --snapshot examples/role-swap/snapshot.json --root examples/role-swap
+```
+
+Пример полностью вымышленный. Ответ `ready`, код выхода 0; файлы и устройства не меняются. Замените каталог на `examples/domain-change`, чтобы увидеть согласованную замену `light.table` и сервиса `light.turn_off`. Пример `examples/blocked-template` вернёт `blocked` и код 3. Ошибка входных данных — код 2. `--format text` после `plan` включает текстовый отчёт; ключи JSON и коды ошибок одинаковы на всех языках.
+
+## Возможности и границы
+
+Явные hardware/channel/role, возможности устройства, допустимые роли потребителя, JSON pointers, проверка коллизий и SHA-256 точных байтов. Поддержана осторожная смена light/switch для одной простой цели без дополнительных данных действия. Динамические Jinja, косвенные device/area/label targets, неизвестные ссылки и неподдержанные форматы блокируют план. YAML нужно явно нормализовать в JSON и проверить; комментарии и якоря не переносятся.
+
+`ready` означает согласованность переданных деклараций в поддержанном объёме, а не полный аудит HA или испытание реального реле. В первой версии нет API, сетевого клиента и команды apply.
+
+Читайте [модель входных данных](docs/ru/model.md), [примеры](docs/ru/examples.md), [архитектуру](docs/ru/architecture.md), [диагностику](docs/ru/troubleshooting.md), [ограничения](docs/ru/limitations.md), [источники](docs/sources.md) и [политику безопасности](SECURITY.md). Wiki хранится в репозитории; отдельная опубликованная GitHub Wiki этим не подразумевается.
+
+```sh
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+python3 tools/generate_examples.py
+python3 tools/render_diagrams.py
+```
+
+Тесты программные, домашние устройства не задействуют. SVG воспроизводимы и синтетические; это не фотографии и не измерения. Версия 0.1.0, MIT.

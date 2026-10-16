@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="440" viewBox="0 0 960 440" role="img" aria-labelledby="title desc">
+<title id="title">A role moves; hardware keeps its own identity</title><desc id="desc">Synthetic before and after. The lighting automation still follows the workbench lamp role on plug B. Plug A becomes pump power and is excluded from the lighting action.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#334155"/></marker></defs>
+<rect width="960" height="440" fill="#f8fafc"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#0f172a}.title{font-size:25px;font-weight:bold}.label{font-size:18px;font-weight:bold}.small{font-size:15px}.caption{font-size:16px;fill:#475569}</style>
+<text x="32" y="44" class="title">A role moves; hardware keeps its own identity</text>
+<text x="32" y="83" class="caption">BEFORE · synthetic example</text>
+<text x="520" y="83" class="caption">AFTER · proposed assignments</text>
+<rect x="32" y="103" width="390" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="48" y="132" class="label">Plug A / channel 1</text><text x="48" y="157" class="small">light.workbench · role: workbench</text>
+<rect x="32" y="213" width="390" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="48" y="242" class="label">Plug B / channel 1</text><text x="48" y="267" class="small">switch.spare · role: spare</text>
+<rect x="520" y="103" width="408" height="76" rx="6" fill="#ffedd5" stroke="#64748b"/><text x="536" y="132" class="label">Plug A / channel 1</text><text x="536" y="157" class="small">switch.pump_enable · role: pump_enable</text>
+<rect x="520" y="213" width="408" height="76" rx="6" fill="#ccfbf1" stroke="#64748b"/><text x="536" y="242" class="label">Plug B / channel 1</text><text x="536" y="267" class="small">light.workbench · role: workbench</text>
+<path d="M422,141 L508,141" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M422,251 L508,251" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="190" y="333" width="570" height="76" rx="6" fill="#ccfbf1" stroke="#64748b"/><text x="206" y="362" class="label">Lighting action follows the workbench role</text><text x="206" y="387" class="small">Allowed roles reject accidental pump control</text>
+<path d="M723,289 L650,322" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>

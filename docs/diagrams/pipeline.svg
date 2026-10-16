@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380" role="img" aria-labelledby="title desc">
+<title id="title">Read files → verify declarations → review a plan</title><desc id="desc">Offline data flow with strict JSON input, byte fingerprints, semantic checks and a read-only report. No Home Assistant connection or apply stage.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#334155"/></marker></defs>
+<rect width="960" height="380" fill="#f8fafc"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#0f172a}.title{font-size:25px;font-weight:bold}.label{font-size:18px;font-weight:bold}.small{font-size:15px}.caption{font-size:16px;fill:#475569}</style>
+<text x="32" y="44" class="title">Read files → verify declarations → review a plan</text>
+<rect x="32" y="105" width="250" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="48" y="134" class="label">Explicit private inputs</text><text x="48" y="159" class="small">Manifest · snapshot · JSON</text>
+<rect x="354" y="105" width="252" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="370" y="134" class="label">Validate and resolve</text><text x="370" y="159" class="small">Hashes · roles · capabilities</text>
+<rect x="678" y="105" width="250" height="76" rx="6" fill="#e2e8f0" stroke="#64748b"/><text x="694" y="134" class="label">Report to stdout</text><text x="694" y="159" class="small">ready / blocked / invalid</text>
+<path d="M282,143 L341,143" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M606,143 L665,143" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="234" class="caption">Unresolved templates, indirect targets or unsupported formats → blocked</text>
+<text x="32" y="278" class="caption">No network client. No template execution. No files changed. No physical acceptance claimed.</text>
+<text x="32" y="328" class="caption">Scope: only supplied files and declared identities. Report operations are advisory, not JSON Patch.</text>
+</svg>

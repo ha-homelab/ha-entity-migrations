@@ -1,0 +1,24 @@
+[
+  {
+    "alias": "Synthetic lights off",
+    "actions": [
+      {
+        "action": "light.turn_off",
+        "target": {
+          "entity_id": "light.workbench"
+        }
+      }
+    ]
+  },
+  {
+    "alias": "Retired spare example",
+    "actions": [
+      {
+        "action": "switch.turn_off",
+        "target": {
+          "entity_id": "switch.spare"
+        }
+      }
+    ]
+  }
+]

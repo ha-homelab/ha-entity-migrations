@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "snapshot_sha256": "ffdac6d11f5cf79be3f666b58a3ddd5d9a869f22dce0bdb35755f663844d218b",
+  "sources": {
+    "automations.json": "31628ba3f53fe66d3954c1148c21f206337925c6284526fbe92521d17bc64761"
+  },
+  "assignments": [
+    {
+      "entity_id": "switch.table",
+      "hardware_id": "plug-c",
+      "channel": "1",
+      "role": "table",
+      "capabilities": [
+        "on_off"
+      ]
+    }
+  ],
+  "consumers": [
+    {
+      "file": "automations.json",
+      "pointer": "/0/actions/0/target/entity_id",
+      "policy": "follows_hardware",
+      "kind": "action",
+      "allowed_roles": [
+        "table"
+      ],
+      "required_capabilities": [
+        "on_off"
+      ],
+      "service_pointer": "/0/actions/0/action"
+    }
+  ]
+}

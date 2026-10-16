@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "entities": [
+    {
+      "entity_id": "light.workbench",
+      "hardware_id": "plug-a",
+      "channel": "1",
+      "role": "workbench",
+      "capabilities": [
+        "on_off"
+      ]
+    },
+    {
+      "entity_id": "switch.spare",
+      "hardware_id": "plug-b",
+      "channel": "1",
+      "role": "spare",
+      "capabilities": [
+        "on_off"
+      ]
+    }
+  ]
+}

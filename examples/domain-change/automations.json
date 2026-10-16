@@ -1,0 +1,12 @@
+[
+  {
+    "actions": [
+      {
+        "action": "light.turn_off",
+        "target": {
+          "entity_id": "light.table"
+        }
+      }
+    ]
+  }
+]
