@@ -6,7 +6,16 @@ import re
 from pathlib import Path
 from typing import Any
 
-from .io import InputError, escape, fingerprint, parse_json, read_regular, resolve, source_path
+from .io import (
+    InputError,
+    escape,
+    fingerprint,
+    parse_json,
+    read_regular,
+    read_regular_identified,
+    resolve,
+    source_path,
+)
 
 ENTITY = re.compile(r"[a-z][a-z0-9_]*\.[a-z0-9_]+\Z")
 MENTION = re.compile(r"(?<![\w.])[a-z][a-z0-9_]*\.[a-z0-9_]+(?![\w.])")
@@ -375,10 +384,19 @@ def load_plan(manifest_path: Path, snapshot_path: Path, root: Path) -> dict:
     )
     schema(0 < len(manifest["sources"]) <= MAX_FILES, "manifest.sources")
     sources = {}
+    canonical_paths: set[Path] = set()
+    file_identities: set[tuple[int, int]] = set()
     total = 0
     for name in sorted(manifest["sources"]):
         path = source_path(root, name)
-        raw = read_regular(path)
+        canonical = path.resolve()
+        if canonical in canonical_paths:
+            raise InputError("duplicate_source", name)
+        raw, identity = read_regular_identified(path)
+        if identity in file_identities:
+            raise InputError("duplicate_source", name)
+        canonical_paths.add(canonical)
+        file_identities.add(identity)
         total += len(raw)
         if total > 16 * 1024 * 1024:
             raise InputError("size_limit", "sources")

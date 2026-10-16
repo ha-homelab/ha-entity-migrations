@@ -96,6 +96,12 @@ ROWS = {
         "Doppelter JSON-Schlüssel.",
         "Clave JSON duplicada.",
     ),
+    "duplicate_source": (
+        "Two source names refer to one file. Keep one canonical name and update its consumers.",
+        "Два имени источника указывают на один файл. Оставьте одно имя и обновите потребителей.",
+        "Zwei Quellnamen verweisen auf eine Datei. Einen kanonischen Namen und dessen Verbraucher verwenden.",
+        "Dos nombres de origen apuntan al mismo archivo. Conserve un nombre canónico y actualice sus consumidores.",
+    ),
     "invalid_json": (
         "Invalid UTF-8 or strict JSON.",
         "Неверный UTF-8 или строгий JSON.",

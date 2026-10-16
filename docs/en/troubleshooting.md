@@ -12,6 +12,11 @@ channel identifiers are strings. Every action policy needs its service pointer.
 A snapshot has entities; a manifest has assignments and consumers. They are not
 interchangeable files.
 
+**Exit 2, duplicate_source:** two source names identify one physical file.
+Keep a single canonical name in `sources` and update all consumer `file` fields
+to it. Remove duplicate separators or hard-link/case aliases; do not give an
+alias a second policy. Separate files with identical content remain supported.
+
 **stale_snapshot / stale_source:** compare actual changes with the approved source.
 Use the fingerprint command only after reviewing them. Whitespace changes affect
 the hash. Do not point at a stale copy merely to make the old hash pass.
