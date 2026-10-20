@@ -1,5 +1,7 @@
 # Home Assistant Entity Migrations
 
+**Beta 0.1.1b1:** versión preliminar para evaluar el software; no implica la aceptación de dispositivos físicos.
+
 **Traslade una función a nuevo hardware sin dirigir accidentalmente sus automatizaciones al aparato equivocado.** Esta CLI local de Python genera un plan revisable a partir de un inventario explícito y políticas de referencias. No se conecta a Home Assistant ni aplica cambios.
 
 [English](README.md) · [Русский](README.ru.md) · [Deutsch](README.de.md) · [Manual completo en inglés](docs/en/installation.md)
@@ -35,4 +37,4 @@ python3 tools/generate_examples.py
 python3 tools/render_diagrams.py
 ```
 
-Las pruebas no utilizan dispositivos reales. Los SVG reproducibles son diagramas sintéticos, no fotografías ni resultados medidos. Manuales completos en inglés y ruso; CLI y README en los cuatro idiomas. Versión 0.1.0, licencia MIT.
+Las pruebas no utilizan dispositivos reales. Los SVG reproducibles son diagramas sintéticos, no fotografías ni resultados medidos. Manuales completos en inglés y ruso; CLI y README en los cuatro idiomas. Versión 0.1.1b1, licencia MIT.

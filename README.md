@@ -1,5 +1,7 @@
 # Home Assistant Entity Migrations
 
+**Beta 0.1.1b1:** prerelease for software evaluation; physical device acceptance is not implied.
+
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15564/badge)](https://www.bestpractices.dev/projects/15564)
 
 **Move a logical role to new hardware without silently moving its old automation to the wrong appliance.** This offline Python CLI produces a reviewable plan from an explicit inventory and consumer policies. It never connects to Home Assistant or applies a change.
@@ -58,7 +60,7 @@ python3 tools/render_diagrams.py
 
 Tests cover role repurposing, domain migration, collisions, stale fingerprints, unresolved inputs, bounded parsing and all four CLI languages. They do not connect to a household or prove that any device switches. The three SVGs are original reproducible synthetic diagrams, not measured performance charts or photographs.
 
-MIT licensed. Project/package version: **0.1.0**.
+MIT licensed. Project/package version: **0.1.1b1**.
 
 ## Project maintenance
 

@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from . import __version__
 from .io import (
     InputError,
     escape,
@@ -363,7 +364,7 @@ def plan(
     diagnostics = sorted(unique_issues.values(), key=lambda item: (item["location"], item["code"]))
     return {
         "schema_version": 1,
-        "tool_version": "0.1.0",
+        "tool_version": __version__,
         "status": "blocked" if diagnostics else "ready",
         "read_only": True,
         "scope": "supplied_files_only",
