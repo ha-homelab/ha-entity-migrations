@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+No pending changes.
+
+## 0.1.1b1 — 2026-10-20
+
+- Report the package version in migration plans instead of a stale hard-coded version.
+- First GitHub beta: source archive, wheel and SHA-256 checksums; no PyPI publication.
+- Keep package metadata, source version and root version aligned. This prerelease retains the existing report/schema contracts.
+
 - Update CI to pytest 9.0.3 (GHSA-6w46-j5rx-g56g) and the build backend to setuptools 83.0.0 (upstream fix for GHSA-h35f-9h28-mq5c).
 - Document private reporting, review/release responsibilities, contribution rules and the current continuity limitation; include these policies in source distributions.
 

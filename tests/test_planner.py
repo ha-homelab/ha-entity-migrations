@@ -8,6 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from ha_entity_migrations import __version__
 from ha_entity_migrations.i18n import CATALOGS, LANGUAGES, ROWS
 from ha_entity_migrations.io import (
     MAX_BYTES,
@@ -40,6 +41,9 @@ def codes(result):
 
 
 class PlannerTests(unittest.TestCase):
+    def test_report_identifies_running_package_version(self):
+        self.assertEqual(plan(*fixture())["tool_version"], __version__)
+
     def test_role_moved_off_repurposed_hardware(self):
         data = fixture("role-swap")
         result = plan(*data)

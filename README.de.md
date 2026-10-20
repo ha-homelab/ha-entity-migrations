@@ -1,5 +1,7 @@
 # Home Assistant Entity Migrations
 
+**Beta 0.1.1b1:** Vorabversion zur Softwareprüfung; sie setzt keine Abnahme physischer Geräte voraus.
+
 **Eine logische Rolle auf neue Hardware übertragen, ohne alte Automationen versehentlich auf ein anderes Gerät umzulenken.** Dieses lokale Python-CLI erstellt einen prüfbaren Plan aus einem expliziten Inventar und Referenzrichtlinien. Es verbindet sich nicht mit Home Assistant und wendet keine Änderungen an.
 
 [English](README.md) · [Русский](README.ru.md) · [Español](README.es.md) · [Ausführliches Handbuch auf Englisch](docs/en/installation.md)
@@ -25,7 +27,7 @@ Das Beispiel ist vollständig synthetisch. `ready` und Exitcode 0 bedeuten einen
 
 Explizite Hardware-/Kanal-/Rollenbindungen, deklarierte Fähigkeiten, erlaubte Rollen, JSON-Zeiger, Kollisionsprüfung und SHA-256 der exakten Dateibytes. Die einfache light/switch-Dienstumstellung unterstützt ein einzelnes literales Ziel ohne Aktionsdaten. Dynamische Jinja-Ausdrücke, indirekte Geräte-/Bereichs-/Label-Ziele, unbekannte Referenzen und nicht unterstützte Formate blockieren den Plan.
 
-YAML muss ausdrücklich nach JSON normalisiert und geprüft werden. Kommentare, Anker und Formatierung werden nicht übernommen. `ready` bestätigt weder die Vollständigkeit einer HA-Prüfung noch die tatsächliche Verdrahtung. Version 0.1.0 hat keinen Netzwerkclient und keinen apply-Befehl.
+YAML muss ausdrücklich nach JSON normalisiert und geprüft werden. Kommentare, Anker und Formatierung werden nicht übernommen. `ready` bestätigt weder die Vollständigkeit einer HA-Prüfung noch die tatsächliche Verdrahtung. Version 0.1.1b1 hat keinen Netzwerkclient und keinen apply-Befehl.
 
 [Modell](docs/en/model.md) · [Beispiele](docs/en/examples.md) · [Architektur](docs/en/architecture.md) · [Fehlerbehebung](docs/en/troubleshooting.md) · [Grenzen](docs/en/limitations.md) · [Sicherheit](SECURITY.md) · [Wiki-Quelldateien](wiki/Home.md)
 
