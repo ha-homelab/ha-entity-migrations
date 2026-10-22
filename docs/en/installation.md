@@ -1,12 +1,41 @@
 # Installation and CLI
 
-[Documentation index](../../README.md#documentation) · [Русский](../ru/installation.md)
+<!-- language-navigation:start -->
+<p dir="ltr">
+<a href="../en/installation.md" lang="en" dir="ltr">English</a> ·
+<a href="../ar/installation.md" lang="ar" dir="rtl">العربية</a> ·
+<a href="../bn/installation.md" lang="bn" dir="ltr">বাংলা</a> ·
+<a href="../cs/installation.md" lang="cs" dir="ltr">Čeština</a> ·
+<a href="../de/installation.md" lang="de" dir="ltr">Deutsch</a> ·
+<a href="../es/installation.md" lang="es" dir="ltr">Español</a> ·
+<a href="../fa/installation.md" lang="fa" dir="rtl">فارسی</a> ·
+<a href="../fr/installation.md" lang="fr" dir="ltr">Français</a> ·
+<a href="../he/installation.md" lang="he" dir="rtl">עברית</a> ·
+<a href="../hi/installation.md" lang="hi" dir="ltr">हिन्दी</a> ·
+<a href="../id/installation.md" lang="id" dir="ltr">Bahasa Indonesia</a> ·
+<a href="../it/installation.md" lang="it" dir="ltr">Italiano</a> ·
+<a href="../ja/installation.md" lang="ja" dir="ltr">日本語</a> ·
+<a href="../ko/installation.md" lang="ko" dir="ltr">한국어</a> ·
+<a href="../nl/installation.md" lang="nl" dir="ltr">Nederlands</a> ·
+<a href="../pl/installation.md" lang="pl" dir="ltr">Polski</a> ·
+<a href="../pt/installation.md" lang="pt" dir="ltr">Português</a> ·
+<a href="../ru/installation.md" lang="ru" dir="ltr">Русский</a> ·
+<a href="../th/installation.md" lang="th" dir="ltr">ไทย</a> ·
+<a href="../tr/installation.md" lang="tr" dir="ltr">Türkçe</a> ·
+<a href="../uk/installation.md" lang="uk" dir="ltr">Українська</a> ·
+<a href="../vi/installation.md" lang="vi" dir="ltr">Tiếng Việt</a> ·
+<a href="../zh-Hans/installation.md" lang="zh-Hans" dir="ltr">简体中文</a> ·
+<a href="../zh-Hant/installation.md" lang="zh-Hant" dir="ltr">繁體中文</a>
+</p>
+<!-- language-navigation:end -->
+
+[Documentation index](../../README.md#documentation)
 
 Use Python 3.11 or newer. Create a dedicated virtual environment, activate it,
 then run `python3 -m pip install -e .` from the checkout. The package has no
 runtime dependencies; pip may obtain its build backend. For an offline machine,
 prepare the wheel and build dependencies in advance. Verify the selected
-installation with `ha-entity-migrations --version` (0.1.0).
+installation with `ha-entity-migrations --version`; it reports the installed package version.
 
 The CLI has two commands, with a global language option before the command:
 

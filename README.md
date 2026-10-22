@@ -40,6 +40,9 @@ Try `examples/domain-change` with the same arguments: the plan changes `light.ta
 
 ## Documentation
 
+The detailed guides and checked-in wiki introductions are available in 24 languages.
+Each page links to the same guide in every language; see [translation maintenance](docs/translations.md).
+
 1. [Installation and CLI](docs/en/installation.md)
 2. [Input model and schema](docs/en/model.md)
 3. [Worked examples](docs/en/examples.md)

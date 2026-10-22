@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "languages": "docs/languages.json",
+  "families": [
+    {
+      "source": "docs/en/architecture.md",
+      "source_sha256": "53a652344879cecf0c7c2ff8a032f743e6dc51e76b1806364ba914c30ffbe224"
+    },
+    {
+      "source": "docs/en/examples.md",
+      "source_sha256": "259d2813978673a2c85b1f27ae51219870f1793e3c5ec8a8864317cec1e4495c"
+    },
+    {
+      "source": "docs/en/installation.md",
+      "source_sha256": "e6d0134e4aff6252f0f0cc3464c12d8c17efce15348cde702078e753e94f3cf7"
+    },
+    {
+      "source": "docs/en/limitations.md",
+      "source_sha256": "02b6855e5da7b54eb4ed3e24da3c476d68693eb6033207661cb43ade2208c216"
+    },
+    {
+      "source": "docs/en/model.md",
+      "source_sha256": "656c39bdd086ccfbf035b269a4917bbde4fce87e0c615d196200f08c0fd593ab"
+    },
+    {
+      "source": "docs/en/troubleshooting.md",
+      "source_sha256": "29aba67f61250cc862e1f62f7c4fd46063f685c9da3ab1e9a3c45dab8476887b"
+    },
+    {
+      "source": "wiki/Home.md",
+      "source_sha256": "aec3c4089dd6fe3a72dfd6c35134eaf498babc60d0b96a4560f6becd5d772b42"
+    },
+    {
+      "source": "wiki/Installation.md",
+      "source_sha256": "3e045119111bb6f1ba78dd6b2d7f71593080161776409fef265aa02410f443bb"
+    },
+    {
+      "source": "wiki/Model.md",
+      "source_sha256": "75d2ef556155fccec6a5a01c66687bad967606018c84fa9bd93327df750c6771"
+    },
+    {
+      "source": "wiki/Troubleshooting.md",
+      "source_sha256": "816c2c6b5ca762d6e033ad3d39075694a15a5f56b3dc59f5c0ab014ab95259e9"
+    }
+  ]
+}
