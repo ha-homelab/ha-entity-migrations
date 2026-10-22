@@ -1,6 +1,35 @@
 # Architecture and report contract
 
-[Model](model.md) · [Limitations](limitations.md) · [Русский](../ru/architecture.md)
+<!-- language-navigation:start -->
+<p dir="ltr">
+<a href="../en/architecture.md" lang="en" dir="ltr">English</a> ·
+<a href="../ar/architecture.md" lang="ar" dir="rtl">العربية</a> ·
+<a href="../bn/architecture.md" lang="bn" dir="ltr">বাংলা</a> ·
+<a href="../cs/architecture.md" lang="cs" dir="ltr">Čeština</a> ·
+<a href="../de/architecture.md" lang="de" dir="ltr">Deutsch</a> ·
+<a href="../es/architecture.md" lang="es" dir="ltr">Español</a> ·
+<a href="../fa/architecture.md" lang="fa" dir="rtl">فارسی</a> ·
+<a href="../fr/architecture.md" lang="fr" dir="ltr">Français</a> ·
+<a href="../he/architecture.md" lang="he" dir="rtl">עברית</a> ·
+<a href="../hi/architecture.md" lang="hi" dir="ltr">हिन्दी</a> ·
+<a href="../id/architecture.md" lang="id" dir="ltr">Bahasa Indonesia</a> ·
+<a href="../it/architecture.md" lang="it" dir="ltr">Italiano</a> ·
+<a href="../ja/architecture.md" lang="ja" dir="ltr">日本語</a> ·
+<a href="../ko/architecture.md" lang="ko" dir="ltr">한국어</a> ·
+<a href="../nl/architecture.md" lang="nl" dir="ltr">Nederlands</a> ·
+<a href="../pl/architecture.md" lang="pl" dir="ltr">Polski</a> ·
+<a href="../pt/architecture.md" lang="pt" dir="ltr">Português</a> ·
+<a href="../ru/architecture.md" lang="ru" dir="ltr">Русский</a> ·
+<a href="../th/architecture.md" lang="th" dir="ltr">ไทย</a> ·
+<a href="../tr/architecture.md" lang="tr" dir="ltr">Türkçe</a> ·
+<a href="../uk/architecture.md" lang="uk" dir="ltr">Українська</a> ·
+<a href="../vi/architecture.md" lang="vi" dir="ltr">Tiếng Việt</a> ·
+<a href="../zh-Hans/architecture.md" lang="zh-Hans" dir="ltr">简体中文</a> ·
+<a href="../zh-Hant/architecture.md" lang="zh-Hant" dir="ltr">繁體中文</a>
+</p>
+<!-- language-navigation:end -->
+
+[Model](model.md) · [Limitations](limitations.md)
 
 ![Read-only data flow](../diagrams/pipeline.svg)
 

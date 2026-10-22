@@ -1,6 +1,35 @@
 # Input model
 
-[Installation](installation.md) · [Examples](examples.md) · [Русский](../ru/model.md)
+<!-- language-navigation:start -->
+<p dir="ltr">
+<a href="../en/model.md" lang="en" dir="ltr">English</a> ·
+<a href="../ar/model.md" lang="ar" dir="rtl">العربية</a> ·
+<a href="../bn/model.md" lang="bn" dir="ltr">বাংলা</a> ·
+<a href="../cs/model.md" lang="cs" dir="ltr">Čeština</a> ·
+<a href="../de/model.md" lang="de" dir="ltr">Deutsch</a> ·
+<a href="../es/model.md" lang="es" dir="ltr">Español</a> ·
+<a href="../fa/model.md" lang="fa" dir="rtl">فارسی</a> ·
+<a href="../fr/model.md" lang="fr" dir="ltr">Français</a> ·
+<a href="../he/model.md" lang="he" dir="rtl">עברית</a> ·
+<a href="../hi/model.md" lang="hi" dir="ltr">हिन्दी</a> ·
+<a href="../id/model.md" lang="id" dir="ltr">Bahasa Indonesia</a> ·
+<a href="../it/model.md" lang="it" dir="ltr">Italiano</a> ·
+<a href="../ja/model.md" lang="ja" dir="ltr">日本語</a> ·
+<a href="../ko/model.md" lang="ko" dir="ltr">한국어</a> ·
+<a href="../nl/model.md" lang="nl" dir="ltr">Nederlands</a> ·
+<a href="../pl/model.md" lang="pl" dir="ltr">Polski</a> ·
+<a href="../pt/model.md" lang="pt" dir="ltr">Português</a> ·
+<a href="../ru/model.md" lang="ru" dir="ltr">Русский</a> ·
+<a href="../th/model.md" lang="th" dir="ltr">ไทย</a> ·
+<a href="../tr/model.md" lang="tr" dir="ltr">Türkçe</a> ·
+<a href="../uk/model.md" lang="uk" dir="ltr">Українська</a> ·
+<a href="../vi/model.md" lang="vi" dir="ltr">Tiếng Việt</a> ·
+<a href="../zh-Hans/model.md" lang="zh-Hans" dir="ltr">简体中文</a> ·
+<a href="../zh-Hant/model.md" lang="zh-Hant" dir="ltr">繁體中文</a>
+</p>
+<!-- language-navigation:end -->
+
+[Installation](installation.md) · [Examples](examples.md)
 
 All documents use UTF-8 strict JSON. Duplicate keys, non-finite numbers and unknown
 schema fields are rejected. Exact examples in `examples/` are the executable
