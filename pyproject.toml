@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ha-entity-migrations"
-version = "0.1.1rc1"
+version = "0.1.1"
 description = "Offline, read-only role-aware Home Assistant migration plans"
 readme = "README.md"
 requires-python = ">=3.11"
