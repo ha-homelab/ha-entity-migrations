@@ -19,7 +19,8 @@ Requires Python 3.11 or newer; runtime dependencies: none. From a source checkou
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
-python3 -m pip install -e .
+python3 -m pip install --only-binary=:all: --require-hashes -r requirements-ci.txt
+python3 -m pip install --no-index --no-deps --no-build-isolation -e .
 ha-entity-migrations --lang en plan --manifest examples/role-swap/manifest.json --snapshot examples/role-swap/snapshot.json --root examples/role-swap
 ```
 
@@ -54,6 +55,9 @@ Each page links to the same guide in every language; see [translation maintenanc
 The checked-in [wiki pages](wiki/Home.md) are documentation source; their presence does not claim a hosted GitHub wiki has been published.
 
 ## Development
+
+Use the [locked CI environment](CONTRIBUTING.md#reproduce-the-ci-environment)
+for development dependencies and reproducible source/wheel builds.
 
 ```sh
 PYTHONPATH=src python3 -m unittest discover -s tests -v
