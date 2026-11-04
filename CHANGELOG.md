@@ -2,11 +2,17 @@
 
 ## Unreleased
 
+## 0.1.2b1 — 2026-11-03
+
 - Return structured invalid-input reports for malformed source filenames and
   filesystem path-inspection errors instead of an uncaught traceback.
 - Reject JSON strings and keys containing unpaired Unicode surrogates before
   planning or report output, while preserving valid Unicode and surrogate pairs.
 - Reject non-ASCII array indexes in RFC 6901 pointers; Unicode object keys remain valid.
+- Build with setuptools 84.2.1 and hash-locked validation/build dependencies; keep
+  runtime dependencies empty and include lock inputs in source distributions.
+- Keep CodeQL action updates grouped and refresh pinned CI actions; opt-in merge
+  automation requires an independent current-head review and the existing checks.
 
 ## 0.1.1 - 2026-10-24
 
