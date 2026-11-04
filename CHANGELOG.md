@@ -4,6 +4,9 @@
 
 ## 0.1.2b1 — 2026-11-03
 
+- Include the release workflow reference and documentation metadata in source
+  archives, so the shipped release guide and documentation inputs are complete.
+
 - Return structured invalid-input reports for malformed source filenames and
   filesystem path-inspection errors instead of an uncaught traceback.
 - Reject JSON strings and keys containing unpaired Unicode surrogates before
