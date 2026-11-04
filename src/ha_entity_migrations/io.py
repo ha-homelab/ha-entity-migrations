@@ -138,7 +138,11 @@ def resolve(document: Any, pointer: str) -> Any:
                 raise InputError("invalid_pointer", pointer)
             token = raw.replace("~1", "/").replace("~0", "~")
             if isinstance(current, list):
-                if not token.isdecimal() or (token.startswith("0") and token != "0"):
+                if (
+                    not token.isascii()
+                    or not token.isdecimal()
+                    or (token.startswith("0") and token != "0")
+                ):
                     raise InputError("invalid_pointer", pointer)
                 current = current[int(token)]
             elif isinstance(current, dict):

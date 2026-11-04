@@ -265,7 +265,10 @@ class InputTests(unittest.TestCase):
 
     def test_pointer_escaping_and_bad_indices(self):
         self.assertEqual(resolve({"a/b": {"~": 5}}, "/a~1b/~0"), 5)
-        for pointer in ["/00", "/-1", "/-", "/~3", "/9"]:
+        self.assertEqual(resolve(["first", "second"], "/1"), "second")
+        self.assertEqual(resolve({"٠": "Arabic key", "０": "fullwidth key"}, "/٠"), "Arabic key")
+        self.assertEqual(resolve({"０": "fullwidth key"}, "/０"), "fullwidth key")
+        for pointer in ["/00", "/-1", "/-", "/~3", "/9", "/٠", "/０", "/٠0", "/0٠"]:
             with self.assertRaises(InputError):
                 resolve([1], pointer)
 
@@ -284,6 +287,25 @@ class InputTests(unittest.TestCase):
             with self.assertRaises(InputError) as caught:
                 source_path(Path("synthetic-root"), "a" * 256)
         self.assertEqual(caught.exception.code, "read_failed")
+        self.assertIs(caught.exception.__cause__, failure)
+
+    def test_canonical_path_failure_after_validation_is_structured(self):
+        root = ROOT / "examples/domain-change"
+        failure = OSError(errno.ENOENT, "synthetic path removed after validation")
+        original = source_path
+
+        def validated_then_unavailable(directory, name):
+            result = original(directory, name)
+            patcher = patch.object(Path, "resolve", side_effect=failure)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+            return result
+
+        with patch("ha_entity_migrations.planner.source_path", validated_then_unavailable):
+            with self.assertRaises(InputError) as caught:
+                load_plan(root / "manifest.json", root / "snapshot.json", root)
+        self.assertEqual(caught.exception.code, "read_failed")
+        self.assertEqual(caught.exception.location, "automations.json")
         self.assertIs(caught.exception.__cause__, failure)
 
     def test_traversal_symlink_oversize_and_fifo(self):
