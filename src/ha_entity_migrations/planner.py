@@ -389,6 +389,7 @@ def load_plan(manifest_path: Path, snapshot_path: Path, root: Path) -> dict:
     file_identities: set[tuple[int, int]] = set()
     total = 0
     for name in sorted(manifest["sources"]):
+        schema(text(name), "manifest.sources")
         path = source_path(root, name)
         canonical = path.resolve()
         if canonical in canonical_paths:
