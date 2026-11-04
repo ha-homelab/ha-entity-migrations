@@ -83,6 +83,12 @@ def parse_json(content: bytes, location: str = "") -> Any:
             raise InputError("structure_limit", location)
         if isinstance(node, float) and not math.isfinite(node):
             raise InputError("invalid_json", location)
+        strings = node.keys() if isinstance(node, dict) else [node] if isinstance(node, str) else []
+        for string_value in strings:
+            try:
+                string_value.encode("utf-8")
+            except UnicodeEncodeError as exc:
+                raise InputError("invalid_json", location) from exc
         children = (
             node.values() if isinstance(node, dict) else node if isinstance(node, list) else []
         )
@@ -97,15 +103,19 @@ def source_path(root: Path, name: str) -> Path:
     if relative.is_absolute() or any(part in ("..", ".") for part in name.split("/")):
         raise InputError("unsafe_path", name)
     candidate = root / relative
-    for path in [candidate, *candidate.parents]:
-        if path == root.parent:
-            break
-        if path.is_symlink():
-            raise InputError("unsafe_path", name)
     try:
+        for path in [candidate, *candidate.parents]:
+            if path == root.parent:
+                break
+            if path.is_symlink():
+                raise InputError("unsafe_path", name)
         candidate.resolve().relative_to(root.resolve())
     except ValueError as exc:
+        if isinstance(exc, InputError):
+            raise
         raise InputError("unsafe_path", name) from exc
+    except OSError as exc:
+        raise InputError("read_failed", name) from exc
     return candidate
 
 
@@ -128,7 +138,11 @@ def resolve(document: Any, pointer: str) -> Any:
                 raise InputError("invalid_pointer", pointer)
             token = raw.replace("~1", "/").replace("~0", "~")
             if isinstance(current, list):
-                if not token.isdecimal() or (token.startswith("0") and token != "0"):
+                if (
+                    not token.isascii()
+                    or not token.isdecimal()
+                    or (token.startswith("0") and token != "0")
+                ):
                     raise InputError("invalid_pointer", pointer)
                 current = current[int(token)]
             elif isinstance(current, dict):

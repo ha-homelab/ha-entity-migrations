@@ -389,8 +389,12 @@ def load_plan(manifest_path: Path, snapshot_path: Path, root: Path) -> dict:
     file_identities: set[tuple[int, int]] = set()
     total = 0
     for name in sorted(manifest["sources"]):
+        schema(text(name), "manifest.sources")
         path = source_path(root, name)
-        canonical = path.resolve()
+        try:
+            canonical = path.resolve()
+        except OSError as exc:
+            raise InputError("read_failed", name) from exc
         if canonical in canonical_paths:
             raise InputError("duplicate_source", name)
         raw, identity = read_regular_identified(path)

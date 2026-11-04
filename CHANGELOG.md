@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-No pending changes.
+- Return structured invalid-input reports for malformed source filenames and
+  filesystem path-inspection errors instead of an uncaught traceback.
+- Reject JSON strings and keys containing unpaired Unicode surrogates before
+  planning or report output, while preserving valid Unicode and surrogate pairs.
+- Reject non-ASCII array indexes in RFC 6901 pointers; Unicode object keys remain valid.
 
 ## 0.1.1 - 2026-10-24
 

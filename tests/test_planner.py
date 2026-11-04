@@ -1,4 +1,5 @@
 import copy
+import errno
 import hashlib
 import json
 import os
@@ -7,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from ha_entity_migrations import __version__
 from ha_entity_migrations.i18n import CATALOGS, LANGUAGES, ROWS
@@ -263,9 +265,48 @@ class InputTests(unittest.TestCase):
 
     def test_pointer_escaping_and_bad_indices(self):
         self.assertEqual(resolve({"a/b": {"~": 5}}, "/a~1b/~0"), 5)
-        for pointer in ["/00", "/-1", "/-", "/~3", "/9"]:
+        self.assertEqual(resolve(["first", "second"], "/1"), "second")
+        self.assertEqual(resolve({"٠": "Arabic key", "０": "fullwidth key"}, "/٠"), "Arabic key")
+        self.assertEqual(resolve({"０": "fullwidth key"}, "/０"), "fullwidth key")
+        for pointer in ["/00", "/-1", "/-", "/~3", "/9", "/٠", "/０", "/٠0", "/0٠"]:
             with self.assertRaises(InputError):
                 resolve([1], pointer)
+
+    def test_json_requires_encodable_unicode_keys_and_values(self):
+        for raw in [b'"\\ud800"', b'{"\\udfff": 1}', b'{"nested": ["\\ud800x"]}']:
+            with self.subTest(raw=raw), self.assertRaises(InputError) as caught:
+                parse_json(raw, "manifest")
+            self.assertEqual(caught.exception.code, "invalid_json")
+            self.assertEqual(caught.exception.location, "manifest")
+        self.assertEqual(parse_json(b'"\\ud83d\\ude00"'), "😀")
+        self.assertEqual(parse_json('{"日本語": "é"}'.encode()), {"日本語": "é"})
+
+    def test_path_inspection_errors_keep_the_input_error_boundary(self):
+        failure = OSError(errno.ENAMETOOLONG, "synthetic long component")
+        with patch.object(Path, "is_symlink", side_effect=failure):
+            with self.assertRaises(InputError) as caught:
+                source_path(Path("synthetic-root"), "a" * 256)
+        self.assertEqual(caught.exception.code, "read_failed")
+        self.assertIs(caught.exception.__cause__, failure)
+
+    def test_canonical_path_failure_after_validation_is_structured(self):
+        root = ROOT / "examples/domain-change"
+        failure = OSError(errno.ENOENT, "synthetic path removed after validation")
+        original = source_path
+
+        def validated_then_unavailable(directory, name):
+            result = original(directory, name)
+            patcher = patch.object(Path, "resolve", side_effect=failure)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+            return result
+
+        with patch("ha_entity_migrations.planner.source_path", validated_then_unavailable):
+            with self.assertRaises(InputError) as caught:
+                load_plan(root / "manifest.json", root / "snapshot.json", root)
+        self.assertEqual(caught.exception.code, "read_failed")
+        self.assertEqual(caught.exception.location, "automations.json")
+        self.assertIs(caught.exception.__cause__, failure)
 
     def test_traversal_symlink_oversize_and_fifo(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -329,6 +370,35 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 2)
         self.assertEqual(json.loads(result.stdout)["status"], "invalid")
+
+    def test_malformed_source_names_and_unicode_return_structured_errors(self):
+        for name, role, expected in [
+            ("a" * 256 + ".json", None, "schema_invalid"),
+            ("bad\ud800.json", None, "invalid_json"),
+            ("automations.json", "bad\ud800", "invalid_json"),
+        ]:
+            with self.subTest(expected=expected, role=role), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                manifest, snapshot, sources, _ = fixture()
+                raw = sources["automations.json"][0]
+                manifest["sources"] = {name: hashlib.sha256(raw).hexdigest()}
+                manifest["consumers"][0]["file"] = name
+                if role is not None:
+                    manifest["assignments"][0]["role"] = role
+                (root / "manifest.json").write_text(json.dumps(manifest))
+                (root / "snapshot.json").write_text(json.dumps(snapshot))
+                (root / "automations.json").write_bytes(raw)
+                before = {path.name: path.read_bytes() for path in root.iterdir()}
+                result = self.call(
+                    "plan", "--manifest", str(root / "manifest.json"),
+                    "--snapshot", str(root / "snapshot.json"), "--root", str(root),
+                )
+                self.assertEqual(result.returncode, 2, result.stderr)
+                self.assertEqual(result.stderr, "")
+                report = json.loads(result.stdout)
+                self.assertEqual(report["status"], "invalid")
+                self.assertEqual(report["diagnostics"][0]["code"], expected)
+                self.assertEqual(before, {path.name: path.read_bytes() for path in root.iterdir()})
 
     def test_i18n_parity_and_help(self):
         for lang in LANGUAGES:
