@@ -23,6 +23,7 @@ never connects to Home Assistant or applies a change.
 Each language directory holds the same six guides, cross-linked to every other
 language. The English pages are the source.
 
+- [English](en/README.md)
 - [العربية](ar/README.md)
 - [বাংলা](bn/README.md)
 - [Čeština](cs/README.md)
